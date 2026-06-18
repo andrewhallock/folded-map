@@ -1,0 +1,222 @@
+---
+---
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+
+    <style>
+      body {
+        margin: 0;
+        background: black;
+        color: white;
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+
+      /* =========================
+         MENU (EXACT SYSTEM COPY)
+         ========================= */
+
+      .menu {
+        position: fixed;
+        top: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 20;
+
+        display: flex;
+        gap: 28px;
+
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                     "Helvetica Neue", Arial, sans-serif;
+
+        font-size: 16px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+
+        color: rgba(240,240,240,0.78);
+        mix-blend-mode: difference;
+      }
+
+      .menu a {
+        color: inherit;
+        text-decoration: none;
+        opacity: 0.85;
+        transition: opacity 200ms ease, transform 200ms ease;
+      }
+
+      .menu a:hover {
+        opacity: 1;
+        transform: translateY(-1px);
+      }
+
+      .menu a.active {
+        opacity: 1;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+
+      /* =========================
+         VIGNETTES (EXACT COPY)
+         ========================= */
+
+      .menu-vignette {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 140px;
+        z-index: 15;
+        pointer-events: none;
+
+        background: radial-gradient(
+          ellipse at top center,
+          rgba(0,0,0,0.70) 0%,
+          rgba(0,0,0,0.45) 35%,
+          rgba(0,0,0,0.18) 60%,
+          rgba(0,0,0,0.00) 100%
+        );
+
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          rgba(0,0,0,1) 0%,
+          rgba(0,0,0,1) 50%,
+          rgba(0,0,0,0) 100%
+        );
+
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0,0,0,1) 0%,
+          rgba(0,0,0,1) 50%,
+          rgba(0,0,0,0) 100%
+        );
+      }
+
+      .content-vignette {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        width: 85vw;
+        height: 100vh;
+
+        z-index: 2;
+        pointer-events: none;
+
+        background: linear-gradient(
+          to right,
+          rgba(0,0,0,0.70) 0%,
+          rgba(0,0,0,0.60) 45%,
+          rgba(0,0,0,0.45) 70%,
+          rgba(0,0,0,0.20) 88%,
+          rgba(0,0,0,0.00) 100%
+        );
+      }
+
+      /* =========================
+         LAYOUT
+         ========================= */
+
+      .layout {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      .content {
+        width: 65vw;
+        padding: 90px 60px 60px 60px;
+        position: relative;
+        z-index: 3;
+      }
+
+      .title {
+        font-size: 20px;
+        opacity: 0.85;
+        margin-bottom: 30px;
+        letter-spacing: 0.02em;
+      }
+
+      .block {
+        max-width: 780px;
+        font-size: 16px;
+        line-height: 1.55;
+        opacity: 0.88;
+        margin-bottom: 22px;
+      }
+
+      .block a {
+        color: inherit;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        opacity: 0.9;
+      }
+
+      .block a:hover {
+        opacity: 1;
+      }
+
+      /* OPTIONAL RIGHT OBJECT */
+      .bg {
+        position: fixed;
+        top: 40px;
+        right: 100px;
+
+        width: 705px;
+        height: 620px;
+
+        background-image: url("/mess_detail.png");
+        background-size: cover;
+        background-position: center;
+
+        opacity: 0.9;
+        z-index: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- MENU SYSTEM -->
+    <div class="menu-vignette"></div>
+
+    <div class="menu">
+      <a href="/about">About</a>
+      <a class="active" href="/folded-map">Folded&nbsp;Map</a>
+      <a href="/media">Media</a>
+      <a href="/research">Research</a>
+    </div>
+
+    <div class="content-vignette"></div>
+
+    <!-- PAGE -->
+    <div class="layout">
+
+      <div class="content">
+
+        <div>
+
+        <div class="block">
+          "The Folded Map" is my doctoral research project at the DocArtes programme at the Orpheus Instituut in Ghent, 
+          and within the research cluster "Resounding Libraries" led by Dr. Bruno Forment. 
+         It explores polyphonic music as a way of thinking about the world. 
+         By tracing connections between musical notation, visual perspective, and early scientific models 
+         of reality, it investigates how different systems of representation shape what can be known, 
+         imagined, and shared. Working across historical repertoires and contemporary artistic practice, 
+         the project treats notation not simply as a record of music but as an active site of interpretation, 
+         negotiation, and invention. Through research, composition, and performance, it reopens 
+         questions about authorship, agency, and the nature of musical works themselves.
+        </div>
+
+        <div class="block">
+          A full version of the research proposal is available here:
+          <a href="Hallock_Andrew_Research_Description.pdf" target="_blank">Download PDF</a>
+        </div>
+
+      </div>
+
+      <div class="bg"></div>
+
+    </div>
+
+  </body>
+</html>
