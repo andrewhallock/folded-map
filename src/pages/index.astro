@@ -200,6 +200,7 @@
     <div class="menu-vignette" id="menuVignette"></div>
 
     <div class="menu">
+    <a href="/">The&nbsp;Folded&nbsp;Map</a>
       <a href="/about">About</a>
       <a href="/media">Media</a>
       <a href="/research">Research</a>
@@ -228,45 +229,39 @@
 
     <div class="text-panel" id="text-music">
     <br>
-      <div class="text-title">Music</div>
-      The Folded Map is a project about Renaissance polyphony. And yet it’s also 
+      
+      The Folded Map is a project about Renaissance polyphony. And yet it is also 
       about philosophy, art and science. It’s the claim that polyphonic music is 
-      part of the world, part of knowledge and inextricably boundup in the hisory of modernity. 
+      part of the world, part of knowledge and inextricably bound to the hisory of modernity. 
 
     
     </div>
 
     <div class="text-panel" id="text-philosophy">
-      <div class="text-title">Philosophy</div>
+      
        
-The Folded Map is about the meanings we construct and curate. With a map we can 
-      navigate, evade cul-de-sacs and hunt for treasure. And so it captures not the terrain 
-      as such, but our attempts to parse it. In Renaissance music I should hear the discourse 
-      on representation. I should hear the Copernican revolution. Beholding polyphony in 
-      the age of perspective means placing these objects of study amidst a “paradigm shift”, 
-      one that upended what we thought was knowable, how to know it, and how to show it.
+With a map we can navigate, evade cul-de-sacs and hunt for treasure. And so it depicts not the terrain 
+      as such, but our circuitous attempts to parse it. The Folded Map is about the kinds of meaning we construct and curate. 
+      
+    
 
 
     </div>
 
     <div class="text-panel" id="text-art">
-      <div class="text-title">Art</div>
-      And yet, almost surprisingly, the colourful canon of Western Polyphony here 
-      admits the failure of its own ambitions; efforts to capture, preserve and revive, 
-      walk hand in hand with destruction and obfuscation. Corruption meets generation. 
+      
+      The colourful canon of Western Polyphony  
+      toys with the gap between a thing and its representation.  
       Written music of this sort continually reveals itself as conceptual art, commenting 
       upon the conditions of its own creation and perilous reception. It’s a picture 
       pretending to be a pipe. 
     </div>
 
     <div class="text-panel" id="text-science">
-      <div class="text-title">Science</div>
-      The Folded Map is about the meanings we construct and curate. With a map we can 
-      navigate, evade cul-de-sacs and hunt for treasure. And so it captures not the terrain 
-      as such, but our attempts to parse it. In Renaissance music I should hear the discourse 
-      on representation. I should hear the Copernican revolution. Beholding polyphony in 
-      the age of perspective means placing these objects of study amidst a “paradigm shift”, 
-      one that upended what we thought was knowable, how to know it, and how to show it.
+      
+       Beholding polyphony in the age of perspective means placing these objects 
+       of study amidst a “paradigm shift”, one that upended what we thought was knowable, 
+       how to know it, and how to show it.
     </div>
 
     <script>
@@ -378,10 +373,23 @@ const glitchImages = [
   "glitch4.png"
 ];
 
+let lastGlitch = null;
+
+function getRandomGlitch() {
+  let next;
+
+  do {
+    next = glitchImages[Math.floor(Math.random() * glitchImages.length)];
+  } while (next === lastGlitch);
+
+  lastGlitch = next;
+  return next;
+}
+
 function spawnGlitch() {
   const img = document.createElement("img");
 
-  img.src = glitchImages[Math.floor(Math.random() * glitchImages.length)];
+  img.src = getRandomGlitch();
   img.className = "glitch-img";
 
   glitchLayer.appendChild(img);
