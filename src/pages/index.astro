@@ -68,11 +68,12 @@
                "Helvetica Neue", Arial, sans-serif;
 
   font-size: 32px;
+  font-weight: 200;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 
   color: rgba(240,240,240,0.78);
-  mix-blend-mode: difference;
+  mix-blend-mode: replace;
 
   pointer-events: auto;
 }
@@ -80,12 +81,12 @@
 .menu a {
   color: inherit;
   text-decoration: none;
-  opacity: 0.80;
+  opacity: 1.0;
   transition: opacity 200ms ease, transform 200ms ease;
 }
 
 .menu a:hover {
-  opacity: 1;
+  opacity: 0.5;
   transform: translateY(-1px);
 }
 
@@ -126,7 +127,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 650px;
+        width: 850px;
         max-width: 85vw;
 
         color: rgba(240,240,240,0.95);
@@ -145,45 +146,52 @@
         margin-bottom: 10px;
       }
 
-      #glitch-layer {
-        position: absolute;
-        inset: 0;
+#glitch-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
 
-        pointer-events: none;
-        z-index: 2;
-        overflow: hidden;
-      }
+  width: 100%;
+  height: 100%;
 
-      .glitch-img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: auto%;
+  pointer-events: none;
+  z-index: 2;
+}
 
-        object-fit: cover;
 
-        opacity: 0;
-        mix-blend-mode: difference;
+.glitch-img {
+  position: absolute;
+  top: 0;
+  left: 0;
 
-        animation: glitchFlash 500ms ease-out forwards;
-      }
+  width: 100%;
+  height: auto;
+
+  display: block;
+
+  opacity: 0;
+  mix-blend-mode: difference;
+
+  animation: glitchFlash 500ms ease-out forwards;
+}
 
       @keyframes glitchFlash {
-        0% {
-          opacity: 0;
-          transform: scale(1.02);
-        }
-        15% {
-          opacity: 1;
-        }
-        60% {
-          opacity: 1;
-        }
-        100% {
-          opacity: 0;
-          transform: scale(1.06);
-        }
-      }
+  0% {
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
     </style>
   </head>
 
@@ -193,7 +201,6 @@
 
     <div class="menu">
       <a href="/about">About</a>
-      <a href="/folded-map">The&nbsp;Folded&nbsp;Map</a>
       <a href="/media">Media</a>
       <a href="/research">Research</a>
     </div>
@@ -204,16 +211,16 @@
 
       <div class="world" id="world">
 
-        <div id="glitch-layer"></div>
+  <div id="glitch-layer"></div>
 
-        <img class="base" id="baseImage" src="/Mess.jpg" />
+  <img class="base" id="baseImage" src="/Mess.jpg" />
 
-        <img class="overlay" id="music" src="/Music-Doodles.png" />
-        <img class="overlay" id="philosophy" src="/Philosophy-Doodles.png" />
-        <img class="overlay" id="art" src="/Art-Doodles.png" />
-        <img class="overlay" id="science" src="/Science-Doodles.png" />
+  <img class="overlay" id="music" src="/Music-Doodles.png" />
+  <img class="overlay" id="philosophy" src="/Philosophy-Doodles.png" />
+  <img class="overlay" id="art" src="/Art-Doodles.png" />
+  <img class="overlay" id="science" src="/Science-Doodles.png" />
 
-      </div>
+</div>
 
       <div class="veil" id="veil"></div>
 
@@ -222,7 +229,9 @@
     <div class="text-panel" id="text-music">
     <br>
       <div class="text-title">Music</div>
-      The Folded Map is a project about Renaissance polyphony. And yet it’s also about philosophy, art and science. It’s the claim that polyphonic music is part of the world, part of knowledge and part of what has shaped modern life. 
+      The Folded Map is a project about Renaissance polyphony. And yet it’s also 
+      about philosophy, art and science. It’s the claim that polyphonic music is 
+      part of the world, part of knowledge and inextricably boundup in the hisory of modernity. 
 
     
     </div>
@@ -230,11 +239,14 @@
     <div class="text-panel" id="text-philosophy">
       <div class="text-title">Philosophy</div>
        
+The Folded Map is about the meanings we construct and curate. With a map we can 
+      navigate, evade cul-de-sacs and hunt for treasure. And so it captures not the terrain 
+      as such, but our attempts to parse it. In Renaissance music I should hear the discourse 
+      on representation. I should hear the Copernican revolution. Beholding polyphony in 
+      the age of perspective means placing these objects of study amidst a “paradigm shift”, 
+      one that upended what we thought was knowable, how to know it, and how to show it.
 
-Throughout the development of measured notation, polyphony and encrypted music, 
-a persistent gap between: record and interpretation; theory and practice; and 
-meaning and representation remains in tact. Seeing and hearing are pitted against 
-each other: two irreconcilable experiences of the supposedly cohesive ‘work’.
+
     </div>
 
     <div class="text-panel" id="text-art">
@@ -264,7 +276,15 @@ each other: two irreconcilable experiences of the supposedly cohesive ‘work’
       const world = document.getElementById("world");
       const veil = document.getElementById("veil");
       const baseImage = document.getElementById("baseImage");
-      const menuVignette = document.getElementById("menuVignette");
+const menuVignette = document.getElementById("menuVignette");
+
+function syncGlitchHeight() {
+  document.querySelectorAll(".glitch-img").forEach(img => {
+    img.style.height = baseImage.offsetHeight + "px";
+  });
+}
+
+window.addEventListener("resize", syncGlitchHeight);
 
       const anchors = [0.20, 0.40, 0.60, 0.80];
 
@@ -342,24 +362,36 @@ each other: two irreconcilable experiences of the supposedly cohesive ‘work’
 
       const glitchLayer = document.getElementById("glitch-layer");
 
-      const glitchImages = [
-        "glitch1.png",
-        "glitch2.png",
-        "glitch3.png",
-        "glitch4.png"
-      ];
+function syncGlitchSize() {
+  glitchLayer.style.height = baseImage.offsetHeight + "px";
+}
 
-      function spawnGlitch() {
-        const img = document.createElement("img");
-        img.src = glitchImages[Math.floor(Math.random() * glitchImages.length)];
-        img.className = "glitch-img";
+baseImage.onload = syncGlitchSize;
+syncGlitchSize();
 
-        glitchLayer.appendChild(img);
+window.addEventListener("resize", syncGlitchSize);
 
-        setTimeout(() => {
-          img.remove();
-        }, 180);
-      }
+const glitchImages = [
+  "glitch1.png",
+  "glitch2.png",
+  "glitch3.png",
+  "glitch4.png"
+];
+
+function spawnGlitch() {
+  const img = document.createElement("img");
+
+  img.src = glitchImages[Math.floor(Math.random() * glitchImages.length)];
+  img.className = "glitch-img";
+
+  glitchLayer.appendChild(img);
+
+  syncGlitchHeight();
+
+  setTimeout(() => {
+    img.remove();
+  }, 180);
+}
 
       function glitchCycle() {
         spawnGlitch();
