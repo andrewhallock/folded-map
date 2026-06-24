@@ -1,6 +1,8 @@
 <html>
   <head>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
 
     <style>
@@ -57,23 +59,24 @@
       .menu {
   position: fixed;
   top: 18px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 28px;
+
   z-index: 20;
 
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
   gap: 28px;
 
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-               "Helvetica Neue", Arial, sans-serif;
+  font-family: "Montserrat", Arial, sans-serif;
 
   font-size: 32px;
-  font-weight: 200;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 
   color: rgba(240,240,240,0.78);
-  mix-blend-mode: replace;
+  mix-blend-mode: difference;
 
   pointer-events: auto;
 }
@@ -90,45 +93,54 @@
   transform: translateY(-1px);
 }
 
-      .menu-vignette {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 140px;
-        z-index: 15;
-        pointer-events: none;
+   .menu-vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 120px;
+  z-index: 15;
+  pointer-events: none;
 
-        background: radial-gradient(
-          ellipse at top center,
-          rgba(0,0,0,0.70) 0%,
-          rgba(0,0,0,0.45) 35%,
-          rgba(0,0,0,0.18) 60%,
-          rgba(0,0,0,0.00) 100%
-        );
+  background: linear-gradient(
+  to bottom,
+  rgba(0,0,0,0.90) 0%,
+  rgba(0,0,0,0.75) 25%,
+  rgba(0,0,0,0.50) 55%,
+  rgba(0,0,0,0.25) 80%,
+  rgba(0,0,0,0.00) 100%
+);
 
-        -webkit-mask-image: linear-gradient(
-          to bottom,
-          rgba(0,0,0,1) 0%,
-          rgba(0,0,0,1) 50%,
-          rgba(0,0,0,0) 100%
-        );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 65%,
+    rgba(0,0,0,0) 100%
+  );
 
-        mask-image: linear-gradient(
-          to bottom,
-          rgba(0,0,0,1) 0%,
-          rgba(0,0,0,1) 50%,
-          rgba(0,0,0,0) 100%
-        );
-      }
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 65%,
+    rgba(0,0,0,0) 100%
+  );
+}
 
       .text-panel {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 850px;
-        max-width: 85vw;
+  position: fixed;
+  top: 50%;
+  left: 8vw;
+  transform: translateY(-50%);
+
+  width: 1100px;
+  max-width: 85vw;
+
+  display: flex;
+  align-items: center;
+  gap: 50px;
+
+  font-family: "Montserrat", Arial, sans-serif;
+  font-weight: 300;
 
         color: rgba(240,240,240,0.95);
         font-size: 28px;
@@ -140,6 +152,30 @@
 
         transition: opacity 220ms ease;
       }
+      .notebook {
+  position: relative;
+
+  width: min(22vw, 260px);
+  height: auto;
+
+  flex-shrink: 0;
+
+  opacity: 1;
+
+  pointer-events: none;
+
+  transition: opacity 220ms ease;
+}
+}
+
+  pointer-events: none;
+
+  transition: opacity 220ms ease;
+}
+
+.text-content {
+  position: relative;
+}
 
       .text-title {
         font-size: 32px;
@@ -228,20 +264,24 @@
     </div>
 
     <div class="text-panel" id="text-music">
-    <br>
+
+  <img class="notebook" src="/Notebook-Music.png">
+  
       
       The Folded Map is a project about Renaissance polyphony. And yet it is also 
       about philosophy, art and science. It’s the claim that polyphonic music is 
-      part of the world, part of knowledge and inextricably bound to the hisory of modernity. 
+      part of the world, part of knowledge and inextricably bound to the histories we inhabit. 
 
     
     </div>
 
     <div class="text-panel" id="text-philosophy">
       
-       
-With a map we can navigate, evade cul-de-sacs and hunt for treasure. And so it depicts not the terrain 
-      as such, but our circuitous attempts to parse it. The Folded Map is about the kinds of meaning we construct and curate. 
+       <img class="notebook" src="/Notebook-Philosophy.jpg">
+
+With a map we may wander, evade cul-de-sacs and hunt for treasure. It is a provisional thing, 
+reflecting the varied ambitions of each time and place. And so the map depicts not terrain as such, but our 
+circuitous attempts to parse it, to navigate it and to know it. This is its true territory.
       
     
 
@@ -249,19 +289,21 @@ With a map we can navigate, evade cul-de-sacs and hunt for treasure. And so it d
     </div>
 
     <div class="text-panel" id="text-art">
+
+    <img class="notebook" src="/Notebook-Art.jpg">
       
-      The colourful canon of Western Polyphony  
-      toys with the gap between a thing and its representation.  
-      Written music of this sort continually reveals itself as conceptual art, commenting 
-      upon the conditions of its own creation and perilous reception. It’s a picture 
-      pretending to be a pipe. 
+      The colourful canon of Western Polyphony also toys with representation, 
+      continually casting itself as a conceptual art, commenting upon the conditions 
+      of its own creation and perilous reception. It’s a picture pretending to be a pipe. 
     </div>
 
     <div class="text-panel" id="text-science">
+
+    <img class="notebook" src="/Notebook-Science.jpg">
       
-       Beholding polyphony in the age of perspective means placing these objects 
-       of study amidst a “paradigm shift”, one that upended what we thought was knowable, 
-       how to know it, and how to show it.
+       Beholding polyphony in the age of perspective, exploration and science means 
+       placing these works within a “paradigm shift”, one that upended what we thought 
+       was knowable, how to know it, and how to show it.
     </div>
 
     <script>
