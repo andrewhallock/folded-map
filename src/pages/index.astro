@@ -92,7 +92,11 @@
   opacity: 0.5;
   transform: translateY(-1px);
 }
-
+.menu a.active {
+  opacity: 1;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+}
    .menu-vignette {
   position: fixed;
   top: 0;
@@ -126,24 +130,29 @@
   );
 }
 
-      .text-panel {
+  .text-panel {
   position: fixed;
   top: 50%;
-  left: 8vw;
+  right: 24vw;
+  left: auto;
   transform: translateY(-50%);
 
-  width: 1100px;
+  width: 900px;
   max-width: 85vw;
 
   display: flex;
   align-items: center;
   gap: 50px;
+  flex-direction: row-reverse;
+
+  text-align: right;
+
 
   font-family: "Montserrat", Arial, sans-serif;
   font-weight: 300;
 
         color: rgba(240,240,240,0.95);
-        font-size: 20px;
+        font-size: 22px;
         line-height: 1.6;
 
         opacity: 0;
@@ -236,7 +245,7 @@
     <div class="menu-vignette" id="menuVignette"></div>
 
     <div class="menu">
-    <a href="/">The&nbsp;Folded&nbsp;Map</a>
+    <a href="/"class="active">The&nbsp;Folded&nbsp;Map</a>
       <a href="/about">About</a>
       <a href="/media">Media</a>
       <a href="/research">Research</a>
@@ -277,10 +286,10 @@
 
     <div class="text-panel" id="text-philosophy">
       
-       <img class="notebook" src="/Notebook-Philosophy.jpg">
+       <img class="notebook" src="/Notebook-Philosophy.png">
 
-With a map we may wander, evade cul-de-sacs and hunt for treasure. It is a provisional thing, 
-reflecting the varied ambitions of each time and place. And so the map depicts not terrain as such, but our 
+With a map we may wander, evade cul-de-sacs and hunt for treasure. A map is a provisional thing, 
+reflecting the varied topologies of each time and place. And so it depicts not terrain as such, but our 
 circuitous attempts to parse it, to navigate it and to know it. This is its true territory.
       
     
@@ -290,20 +299,20 @@ circuitous attempts to parse it, to navigate it and to know it. This is its true
 
     <div class="text-panel" id="text-art">
 
-    <img class="notebook" src="/Notebook-Art.jpg">
+    <img class="notebook" src="/Notebook-Art.png">
       
-      Polyphonic compositions also toy with representation, 
-      continually casting themselves as a conceptual art, commenting upon the conditions 
-      of its own creation and perilous reception. It’s a picture pretending to be a pipe. 
+      Polyphonic compositions also toy with terrain, staging and exploring that gap between 
+      representation and actuality. They behave like conceptual art, commenting upon the conditions 
+      of creation and their own perilous reception. 
     </div>
 
     <div class="text-panel" id="text-science">
 
-    <img class="notebook" src="/Notebook-Science.jpg">
+    <img class="notebook" src="/Notebook-Science.png">
       
-       Beholding Western polyphony in the age of discovery—visual, geographic, and scientific—means 
-       placing these works within a “paradigm shift”, one that upended what 
-       was untimately knowable, and how to relate to the unknown.  
+       Seeing polyphony as a map, is to hear an age of discovery—visual, geographic 
+       and scientific. It means positioning these works within a “paradigm shift”, one that upended what 
+       was untimately knowable, and how we see our arts, and ourselves, in realtion to the unknown.
     </div>
 
     <script>

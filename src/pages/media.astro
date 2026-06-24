@@ -3,6 +3,10 @@
 
 <html>
   <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
     <style>
       body {
         margin: 0;
@@ -16,25 +20,29 @@
          ========================= */
 
       .menu {
-        position: fixed;
-        top: 18px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 20;
+  position: fixed;
+  top: 18px;
+  left: 28px;
 
-        display: flex;
-        gap: 28px;
+  z-index: 20;
 
-        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-                     "Helvetica Neue", Arial, sans-serif;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 
-        font-size: 36px;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
+  gap: 28px;
 
-        color: rgba(240,240,240,0.78);
-        mix-blend-mode: difference;
-      }
+  font-family: "Montserrat", Arial, sans-serif;
+
+  font-size: 28px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  color: rgba(240,240,240,0.78);
+  mix-blend-mode: difference;
+
+  pointer-events: auto;
+}
 
       .menu a {
         color: inherit;
@@ -199,11 +207,11 @@
     <div class="menu-vignette"></div>
 
     <div class="menu">
-      <a href="/about">About</a>
-      <a href="/folded-map">Folded&nbsp;Map</a>
-      <a class="active" href="/media">Media</a>
-      <a href="/research">Research</a>
-    </div>
+  <a href="/">The&nbsp;Folded&nbsp;Map</a>
+  <a href="/about">About</a>
+  <a href="/media"class="active">Media</a>
+  <a href="/research">Research</a>
+</div>
 
     <div class="content-vignette"></div>
 

@@ -1,219 +1,334 @@
 <html>
   <head>
-    <style>
-      body {
-        margin: 0;
-        background: black;
-        color: white;
-        font-family: system-ui, -apple-system, sans-serif;
-      }
 
-      /* MENU (exact index match) */
-      .menu {
-        position: fixed;
-        top: 18px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 20;
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
-        display: flex;
-        gap: 28px;
+```
+<meta charset="UTF-8">
 
-        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-                     "Helvetica Neue", Arial, sans-serif;
+<style>
 
-        font-size: 28px;
-        font-weight: 300;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
+  body {
+  margin: 0;
+  background: black;
+  color: white;
+  font-family: "Montserrat", Arial, sans-serif;
+}
 
-        color: rgba(240,240,240,0.78);
-        mix-blend-mode: difference;
 
-        pointer-events: auto;
-      }
+  .menu {
+    position: fixed;
+    top: 18px;
+    left: 28px;
 
-      .menu a {
-        color: inherit;
-        text-decoration: none;
-        opacity: 0.85;
-        transition: opacity 200ms ease, transform 200ms ease;
-      }
+    z-index: 20;
 
-      .menu a:hover {
-        opacity: 1;
-        transform: translateY(-1px);
-      }
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 
-      .menu a.active {
-        opacity: 1;
-        text-decoration: underline;
-        text-underline-offset: 4px;
-      }
+    gap: 28px;
 
-      /* TOP VIGNETTE (unchanged) */
-      .menu-vignette {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 140px;
-        z-index: 15;
-        pointer-events: none;
+    font-family: "Montserrat", Arial, sans-serif;
 
-        background: radial-gradient(
-          ellipse at top center,
-          rgba(0,0,0,0.70) 0%,
-          rgba(0,0,0,0.45) 35%,
-          rgba(0,0,0,0.18) 60%,
-          rgba(0,0,0,0.00) 100%
-        );
+    font-size: 28px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
 
-        -webkit-mask-image: linear-gradient(
-          to bottom,
-          rgba(0,0,0,1) 0%,
-          rgba(0,0,0,1) 50%,
-          rgba(0,0,0,0) 100%
-        );
+    color: rgba(240,240,240,0.78);
+    mix-blend-mode: difference;
 
-        mask-image: linear-gradient(
-          to bottom,
-          rgba(0,0,0,1) 0%,
-          rgba(0,0,0,1) 50%,
-          rgba(0,0,0,0) 100%
-        );
-      }
+    pointer-events: auto;
+  }
 
-      /* =====================================================
-         UPDATED: SOFTER + WIDER CONTENT VIGNETTE
-         ===================================================== */
-      .content-vignette {
-        position: fixed;
-        top: 0;
-        left: 0;
 
-        width: 88vw;   /* slightly wider = smoother transition into image */
-        height: 100vh;
+  .menu a {
+    color: inherit;
+    text-decoration: none;
+    opacity: 1;
+    transition: opacity 200ms ease, transform 200ms ease;
+  }
 
-        z-index: 2;
-        pointer-events: none;
 
-        background: linear-gradient(
-          to right,
+  .menu a:hover {
+    opacity: 0.5;
+    transform: translateY(-1px);
+  }
 
-          rgba(0,0,0,0.78) 0%,
-          rgba(0,0,0,0.68) 35%,
-          rgba(0,0,0,0.52) 55%,
-          rgba(0,0,0,0.32) 72%,
-          rgba(0,0,0,0.14) 88%,
-          rgba(0,0,0,0.00) 100%
-        );
-      }
 
-      /* LAYOUT */
-      .layout {
-        display: flex;
-        min-height: 100vh;
-      }
+  .menu a.active {
+    opacity: 1;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+  }
 
-      .content {
-        width: 65vw;
-        padding: 90px 60px 60px 60px;
-        position: relative;
-        z-index: 3;
-      }
 
-      .block {
-        max-width: 800px;
-        margin-bottom: 28px;
-        opacity: 0.9;
-        line-height: 1.5;
-      }
+  .menu-vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 120px;
 
-      .block a {
-        color: inherit;
-        text-decoration: underline;
-        text-underline-offset: 3px;
-      }
+    z-index: 15;
+    pointer-events: none;
 
-      /* RIGHT IMAGE */
-      .bg {
-        position: fixed;
-        top: 40px;
-        right: 100px;
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.90) 0%,
+      rgba(0,0,0,0.75) 25%,
+      rgba(0,0,0,0.50) 55%,
+      rgba(0,0,0,0.25) 80%,
+      rgba(0,0,0,0.00) 100%
+    );
 
-        width: 705px;
-        height: 620px;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) 65%,
+      rgba(0,0,0,0) 100%
+    );
 
-        background-image: url("/mess_detail.png");
-        background-size: cover;
-        background-position: center;
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) 65%,
+      rgba(0,0,0,0) 100%
+    );
+  }
 
-        opacity: 0.9;
-        z-index: 1;
-      }
-    </style>
+
+
+  .content-vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 88vw;
+    height: 100vh;
+
+    z-index: 2;
+    pointer-events: none;
+
+    background: linear-gradient(
+      to right,
+      rgba(0,0,0,0.78) 0%,
+      rgba(0,0,0,0.68) 35%,
+      rgba(0,0,0,0.52) 55%,
+      rgba(0,0,0,0.32) 72%,
+      rgba(0,0,0,0.14) 88%,
+      rgba(0,0,0,0.00) 100%
+    );
+  }
+
+
+
+  .layout {
+    display: flex;
+    min-height: 100vh;
+  }
+
+
+  .content {
+    width: 65vw;
+    padding: 90px 60px 60px 60px;
+
+    position: relative;
+    z-index: 3;
+  }
+
+
+  .columns {
+    display: flex;
+    gap: 80px;
+    align-items: flex-start;
+  }
+
+
+  .column {
+    flex: 1;
+    min-width: 0;
+  }
+
+
+  .block {
+  max-width: 800px;
+  margin-bottom: 28px;
+  opacity: 0.9;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+
+  .block a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+
+  .bg {
+    position: fixed;
+
+    top: 40px;
+    right: 100px;
+
+    width: 705px;
+    height: 620px;
+
+    background-image: url("/mess_detail.png");
+    background-size: cover;
+    background-position: center;
+
+    opacity: 0.3;
+    z-index: 1;
+  }
+
+</style>
+```
+
   </head>
-
   <body>
 
-    <div class="menu-vignette"></div>
+```
+<div class="menu-vignette"></div>
 
-    <div class="menu">
-      <a class="active" href="/about">About</a>
-      <a href="/folded-map">Folded&nbsp;Map</a>
-      <a href="/media">Media</a>
-      <a href="/research">Research</a>
-    </div>
 
-    <div class="content-vignette"></div>
+<div class="menu">
 
-    <div class="layout">
+  <a href="/">The&nbsp;Folded&nbsp;Map</a>
 
-      <div class="content">
+  <a href="/about" class="active">About</a>
 
-      <div class="block">
-          Hi, I'm Andrew Hallock.
-        </div>
+  <a href="/media">Media</a>
+
+  <a href="/research">Research</a>
+
+</div>
+
+
+<div class="content-vignette"></div>
+
+
+<div class="layout">
+
+
+  <div class="content">
+
+
+    <div class="columns">
+
+
+      <div class="column">
+
 
         <div class="block">
-          This website brings together my work as a musician and researcher, spanning performance, 
-          composition, and interdisciplinary study. It serves as a space where artistic practice 
+          <strong>Hi, I'm Andrew Hallock.</strong>
+        </div>
+
+
+        
+
+
+        <div class="block">
+
+          This website brings together my work as a musician and researcher, spanning performance,
+          composition, and interdisciplinary study. It serves as a space where artistic practice
           and inquiry meet, and where ongoing projects are made publicly accessible.
-      
-          I am currently a doctoral candidate in the DocArtes program at the Orpheus Institute 
-          in Ghent, where my research explores connections between musical thought, historical 
+
+
+          I am currently a doctoral candidate in the DocArtes program at the Orpheus Institute
+          in Ghent, where my research explores connections between musical thought, historical
           material, and broader historical systems of representation and meaning.
 
-          Here you will find fragments of this work in different forms: texts, recordings, 
-          reflections, and evolving research materials. The site is not organized as a fixed 
+
+          Here you will find fragments of this work in different forms: texts, recordings,
+          reflections, and evolving research materials. The site is not organized as a fixed
           archive, but as a working environment that develops over time.
+
         </div>
+
 
         <div class="block">
-          For a more detailed overview of my background and work, a <a href="/cv-andrew-hallock.pdf" target="_blank">CV</a> is available here.
+
+          For a more detailed overview of my background and work, a
+
+          <a href="/cv-andrew-hallock.pdf" target="_blank">CV</a>
+
+          is available here.
+
         </div>
 
-     <div class="block">
-          "The Folded Map" is my doctoral research project at the DocArtes programme at the Orpheus Instituut in Ghent, 
-          and within the research cluster "Resounding Libraries" led by Dr. Bruno Forment. 
-         It explores polyphonic music as a way of thinking about the world. 
-         By tracing connections between musical notation, visual perspective, and early scientific models 
-         of reality, it investigates how different systems of representation shape what can be known, 
-         imagined, and shared. Working across historical repertoires and contemporary artistic practice, 
-         the project treats notation not simply as a record of music but as an active site of interpretation, 
-         negotiation, and invention. Through research, composition, and performance, it reopens 
-         questions about authorship, agency, and the nature of musical works themselves.
-        </div>
+
+      </div>
+
+
+
+      <div class="column">
+
 
         <div class="block">
+
+          <strong>The Folded Map</strong>
+
+        </div>
+
+
+
+        <div class="block">
+
+          "The Folded Map" is my doctoral research project at the DocArtes programme at the Orpheus Instituut in Ghent,
+          and within the research cluster "Resounding Libraries" led by Dr. Bruno Forment.
+
+
+          It explores polyphonic music as a way of thinking about the world.
+
+
+          By tracing connections between musical notation, visual perspective, and early scientific models
+          of reality, it investigates how different systems of representation shape what can be known,
+          imagined, and shared.
+
+
+          Working across historical repertoires and contemporary artistic practice, the project treats notation
+          not simply as a record of music but as an active site of interpretation, negotiation, and invention.
+
+
+          Through research, composition, and performance, it reopens questions about authorship, agency,
+          and the nature of musical works themselves.
+
+        </div>
+
+
+
+        <div class="block">
+
           A full version of the research proposal is available here:
-          <a href="/Hallock_Andrew_Research_Description.pdf" target="_blank">Download PDF</a>
+
+          <a href="/Hallock_Andrew_Research_Description.pdf" target="_blank">
+            Download PDF
+          </a>
+
         </div>
 
-      <div class="bg"></div>
+
+      </div>
+
 
     </div>
 
+
+
+    <div class="bg"></div>
+
+
+  </div>
+
+
+</div>
+```
+
   </body>
+
 </html>
