@@ -98,6 +98,18 @@
   border-bottom: 1px solid currentColor;
   padding-bottom: 2px;
 }
+
+.menu-toggle {
+  display: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
    .menu-vignette {
   position: fixed;
   top: 0;
@@ -252,9 +264,38 @@
     top: 14px;
     left: 16px;
     right: 16px;
-    gap: 10px 16px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0 16px;
+    box-sizing: border-box;
+    padding: 10px 12px;
     font-size: 14px;
+    background: rgba(0, 0, 0, 0.78);
+    mix-blend-mode: normal;
+  }
+
+  .menu > a {
+    display: none;
+  }
+
+  .menu > a:first-child,
+  .menu.open > a {
+    display: block;
+  }
+
+  .menu > a:first-child {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .menu.open > a:not(:first-child) {
+    grid-column: 1 / -1;
+    padding-top: 12px;
+  }
+
+  .menu-toggle {
+    display: block;
   }
 
   .menu-vignette {
@@ -270,7 +311,7 @@
   }
 }
 
-@media (orientation: landscape) and (max-height: 500px) {
+@media (min-width: 701px) and (orientation: landscape) and (max-height: 500px) {
   .camera {
     height: 100lvh;
   }
@@ -310,6 +351,7 @@
 
     <div class="menu">
     <a href="/"class="active">The&nbsp;Folded&nbsp;Map</a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
       <a href="/about">About</a>
       <a href="/media">Media</a>
       <a href="/research">Research</a>
@@ -514,6 +556,16 @@ function spawnGlitch() {
       }
 
       glitchCycle();
+
+      const menu = document.querySelector(".menu");
+      const menuToggle = document.querySelector(".menu-toggle");
+
+      menuToggle.addEventListener("click", () => {
+        const open = menu.classList.toggle("open");
+        menuToggle.setAttribute("aria-expanded", String(open));
+        menuToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+        menuToggle.textContent = open ? "×" : "☰";
+      });
     </script>
 
   </body>
