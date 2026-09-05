@@ -268,38 +268,9 @@
           top: 14px;
           left: 16px;
           right: 16px;
-          display: grid;
-          grid-template-columns: minmax(0, 1fr) auto;
-          gap: 0 16px;
-          box-sizing: border-box;
-          padding: 10px 12px;
-          font-size: 14px;
-          background: rgba(0, 0, 0, 0.78);
-          mix-blend-mode: normal;
-        }
-
-        .menu > a {
-          display: none;
-        }
-
-        .menu > a:first-child,
-        .menu.open > a {
-          display: block;
-        }
-
-        .menu > a:first-child {
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-        }
-
-        .menu.open > a:not(:first-child) {
-          grid-column: 1 / -1;
-          padding-top: 12px;
-        }
-
-        .menu-toggle {
-          display: block;
+          gap: 12px;
+          flex-wrap: nowrap;
+          font-size: 13px;
         }
 
         .menu-vignette {
@@ -331,6 +302,32 @@
           width: 100vw;
           height: 100vh;
           opacity: 0.35;
+        }
+      }
+
+      @media (max-width: 420px) and (orientation: portrait) {
+        .menu {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) auto;
+          gap: 0 16px;
+        }
+
+        .menu > a {
+          display: none;
+        }
+
+        .menu > a:first-child,
+        .menu.open > a {
+          display: block;
+        }
+
+        .menu.open > a:not(:first-child) {
+          grid-column: 1 / -1;
+          padding-top: 12px;
+        }
+
+        .menu-toggle {
+          display: block;
         }
       }
     </style>
