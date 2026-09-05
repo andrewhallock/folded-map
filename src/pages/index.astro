@@ -146,7 +146,7 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, calc(-50% + var(--line-shift, 0px)));
 
   width: 900px;
   max-width: 85vw;
@@ -171,11 +171,6 @@
         z-index: 10;
 
         transition: opacity 220ms ease;
-      }
-
-      #text-philosophy,
-      #text-science {
-        transform: translate(-50%, calc(-50% + 0.8em));
       }
 
       .notebook {
@@ -287,10 +282,6 @@
     transition: none;
   }
 
-  #text-philosophy,
-  #text-science {
-    transform: translate(-50%, calc(-50% + 0.775em));
-  }
 }
 
 @media (max-width: 420px) and (orientation: portrait) {
@@ -361,10 +352,6 @@
     transition: none;
   }
 
-  #text-philosophy,
-  #text-science {
-    transform: translate(-50%, calc(-50% + 0.7em));
-  }
 }
     </style>
   </head>
@@ -447,6 +434,33 @@ circuitous attempts to parse it, to navigate it and to know it. This is its true
       const directScroll = window.matchMedia("(max-width: 700px), (orientation: landscape) and (max-height: 500px)");
       const landscapeScroll = window.matchMedia("(orientation: landscape) and (max-height: 500px)");
 const menuVignette = document.getElementById("menuVignette");
+
+function syncTextLineGrid() {
+  const panels = textIds.map(id => document.getElementById(id));
+
+  panels.forEach(panel => panel.style.setProperty("--line-shift", "0px"));
+
+  const reference = panels[0];
+  const referenceLineHeight = parseFloat(getComputedStyle(reference).lineHeight);
+  const referenceTop = reference.getBoundingClientRect().top;
+  const referencePhase = ((referenceTop % referenceLineHeight) + referenceLineHeight) % referenceLineHeight;
+
+  panels.forEach((panel, i) => {
+    const lineHeight = parseFloat(getComputedStyle(panel).lineHeight);
+    const currentTop = panel.getBoundingClientRect().top;
+    const currentPhase = ((currentTop % lineHeight) + lineHeight) % lineHeight;
+    const targetPhase = (referencePhase + (i % 2) * lineHeight / 2) % lineHeight;
+    let shift = targetPhase - currentPhase;
+
+    if (shift > lineHeight / 2) shift -= lineHeight;
+    if (shift < -lineHeight / 2) shift += lineHeight;
+
+    panel.style.setProperty("--line-shift", `${shift}px`);
+  });
+}
+
+document.fonts.ready.then(syncTextLineGrid);
+window.addEventListener("resize", syncTextLineGrid);
 
 function getScrollScale() {
   return landscapeScroll.matches ? 0.7 : 1;
