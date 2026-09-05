@@ -273,11 +273,12 @@
   }
 
   .text-panel {
-    top: calc(25svh + 25lvh);
+    top: calc(25svh + 25lvh + 30px);
     width: calc(100vw - 40px);
     max-width: none;
     font-size: 17px;
     line-height: 1.55;
+    transition: none;
   }
 }
 
@@ -346,6 +347,7 @@
     max-width: none;
     font-size: 14px;
     line-height: 1.4;
+    transition: none;
   }
 }
     </style>
@@ -425,7 +427,18 @@ circuitous attempts to parse it, to navigate it and to know it. This is its true
       const world = document.getElementById("world");
       const veil = document.getElementById("veil");
       const baseImage = document.getElementById("baseImage");
+      const scrollSpace = document.querySelector(".scroll");
+      const directScroll = window.matchMedia("(max-width: 700px), (orientation: landscape) and (max-height: 500px)");
 const menuVignette = document.getElementById("menuVignette");
+
+function syncScrollHeight() {
+  scrollSpace.style.height = directScroll.matches ? `${baseImage.offsetHeight}px` : "400vh";
+}
+
+baseImage.addEventListener("load", syncScrollHeight);
+window.addEventListener("resize", syncScrollHeight);
+directScroll.addEventListener("change", syncScrollHeight);
+syncScrollHeight();
 
 function syncGlitchHeight() {
   document.querySelectorAll(".glitch-img").forEach(img => {
@@ -453,7 +466,8 @@ window.addEventListener("resize", syncGlitchHeight);
       }
 
       function updateCamera(t) {
-        const y = t * (baseImage.offsetHeight - window.innerHeight);
+        const maxY = Math.max(0, baseImage.offsetHeight - window.innerHeight);
+        const y = directScroll.matches ? Math.min(window.scrollY, maxY) : t * maxY;
         world.style.transform = `translateY(${-y}px)`;
       }
 
