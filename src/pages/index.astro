@@ -172,6 +172,12 @@
 
         transition: opacity 220ms ease;
       }
+
+      #text-philosophy,
+      #text-science {
+        transform: translate(-50%, calc(-50% + 0.8em));
+      }
+
       .notebook {
   position: relative;
 
@@ -280,6 +286,11 @@
     line-height: 1.55;
     transition: none;
   }
+
+  #text-philosophy,
+  #text-science {
+    transform: translate(-50%, calc(-50% + 0.775em));
+  }
 }
 
 @media (max-width: 420px) and (orientation: portrait) {
@@ -348,6 +359,11 @@
     font-size: 14px;
     line-height: 1.4;
     transition: none;
+  }
+
+  #text-philosophy,
+  #text-science {
+    transform: translate(-50%, calc(-50% + 0.7em));
   }
 }
     </style>
