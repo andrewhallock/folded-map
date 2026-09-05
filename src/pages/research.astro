@@ -321,6 +321,14 @@
           display: block;
         }
 
+        .menu > a:first-child {
+          border-bottom: 0;
+          padding-bottom: 0;
+          font-size: 15px;
+          font-weight: 500;
+          letter-spacing: clamp(0.12em, 1.35vw, 0.38em);
+        }
+
         .menu.open > a:not(:first-child) {
           grid-column: 1 / -1;
           justify-self: end;
