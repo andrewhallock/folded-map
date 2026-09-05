@@ -274,7 +274,7 @@
   }
 
   .text-panel {
-    top: 50svh;
+    top: calc(25svh + 25lvh);
     width: calc(100vw - 40px);
     max-width: none;
     font-size: 17px;
@@ -436,7 +436,7 @@ function syncGlitchHeight() {
 
 window.addEventListener("resize", syncGlitchHeight);
 
-      const anchors = [0.20, 0.40, 0.60, 0.80];
+      const anchors = [0.117, 0.36, 0.60, 0.84];
 
       function clamp01(x) {
         return Math.max(0, Math.min(1, x));
