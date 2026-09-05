@@ -269,6 +269,38 @@
     line-height: 1.55;
   }
 }
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .camera {
+    height: 100lvh;
+  }
+
+  .veil {
+    bottom: auto;
+    height: 100lvh;
+  }
+
+  .menu {
+    top: 10px;
+    left: 16px;
+    right: 16px;
+    gap: 14px;
+    flex-wrap: nowrap;
+    font-size: 13px;
+  }
+
+  .menu-vignette {
+    height: 80px;
+  }
+
+  .text-panel {
+    top: calc(50svh + 18px);
+    width: calc(100vw - 48px);
+    max-width: none;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
     </style>
   </head>
 
