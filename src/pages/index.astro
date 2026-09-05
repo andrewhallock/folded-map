@@ -429,15 +429,26 @@ circuitous attempts to parse it, to navigate it and to know it. This is its true
       const baseImage = document.getElementById("baseImage");
       const scrollSpace = document.querySelector(".scroll");
       const directScroll = window.matchMedia("(max-width: 700px), (orientation: landscape) and (max-height: 500px)");
+      const landscapeScroll = window.matchMedia("(orientation: landscape) and (max-height: 500px)");
 const menuVignette = document.getElementById("menuVignette");
 
+function getScrollScale() {
+  return landscapeScroll.matches ? 0.7 : 1;
+}
+
 function syncScrollHeight() {
-  scrollSpace.style.height = directScroll.matches ? `${baseImage.offsetHeight}px` : "400vh";
+  if (directScroll.matches) {
+    const maxY = Math.max(0, baseImage.offsetHeight - window.innerHeight);
+    scrollSpace.style.height = `${maxY / getScrollScale() + window.innerHeight}px`;
+  } else {
+    scrollSpace.style.height = "400vh";
+  }
 }
 
 baseImage.addEventListener("load", syncScrollHeight);
 window.addEventListener("resize", syncScrollHeight);
 directScroll.addEventListener("change", syncScrollHeight);
+landscapeScroll.addEventListener("change", syncScrollHeight);
 syncScrollHeight();
 
 function syncGlitchHeight() {
@@ -467,8 +478,9 @@ window.addEventListener("resize", syncGlitchHeight);
 
       function updateCamera(t) {
         const maxY = Math.max(0, baseImage.offsetHeight - window.innerHeight);
-        const y = directScroll.matches ? Math.min(window.scrollY, maxY) : t * maxY;
+        const y = directScroll.matches ? Math.min(window.scrollY * getScrollScale(), maxY) : t * maxY;
         world.style.transform = `translateY(${-y}px)`;
+        return maxY > 0 ? y / maxY : 0;
       }
 
       function weight(i, t, range = 0.18) {
@@ -489,9 +501,7 @@ window.addEventListener("resize", syncGlitchHeight);
       }
 
       function update() {
-        const t = getT();
-
-        updateCamera(t);
+        const t = updateCamera(getT());
 
         textIds.forEach((id, i) => {
           const el = document.getElementById(id);
