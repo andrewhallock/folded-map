@@ -436,7 +436,7 @@ function syncGlitchHeight() {
 
 window.addEventListener("resize", syncGlitchHeight);
 
-      const anchors = [0.124, 0.36, 0.60, 0.84];
+      const anchors = [0.143, 0.36, 0.60, 0.84];
 
       function clamp01(x) {
         return Math.max(0, Math.min(1, x));
@@ -470,7 +470,7 @@ window.addEventListener("resize", syncGlitchHeight);
 
         textIds.forEach((id, i) => {
           const el = document.getElementById(id);
-          const w = weight(i, t, 0.19);
+          const w = weight(i, t, 0.22);
           const visible = w > 0.35 ? (w - 0.35) / 0.65 : 0;
           el.style.opacity = clamp01(visible);
         });
